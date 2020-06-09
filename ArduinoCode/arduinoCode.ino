@@ -1,10 +1,12 @@
-#include<LiquidCrystal.h>
+#include "LiquidCrstal_I2C.h"
+#include "Wire.h"
+#include "LCD.H"
 #include "dht.h"
 
 #define dht_pin = A0;
-LiquidCrystal lcd(12,11,5,4,3,2);
 dht DHT;
 
+LiquidCrystal_I2C lcd(0x3F,2,1,0,4,5,6,7);
 int soil_sensorPin = A1;
 int soil_sensorValue;
 int light_SensorPin = A2;
@@ -22,7 +24,7 @@ void setup(){
 
   //Controller communication pins
   pinMode(send_temperature, OUTPUT);
-  pinMode(send_humidity, OUTPUT);
+  pinMode(send_humidity, OUTdUT);
   pinMode(send_soil_moist);
   pinMode(send_light, OUTPUT);
 
@@ -36,6 +38,7 @@ void setup(){
   pinMode(send_light, OUTPUT);
 
   lcd.begin(16,2);
+  ld.setBacklit(3, POSITIVE);
   lcd.setCursor(0, 0);
   lcd.print("Project:");
   lcd.setCursor(0, 1);    //Column | Row
@@ -43,10 +46,19 @@ void setup(){
   lcd.clear();
 }
 
-void loop(){
+void lcd_display() {
+  lcd.setBacklit(HIGH);
+  lcd.setCursor(0,0);
+  lcd.print("Green House Manager");
+  lcd.scrollDisplayLeft();
+  delay(100);
+}
+
+void loop() {
 
   lcd.clear();
   lcd.setCursor(0, 0);
+
   //DHT sensor
   DHT.read11(dht_pin);
   Serial.print("DHT Data temperature: ");
@@ -76,8 +88,8 @@ void loop(){
 
 
   //Automatic control(change values accordingly)
-  /*For soil sensor*/
-  switch(soil_sensorValue){
+
+  switch(soil_sensorValue) {                        //Soil Sensor
     case 1 ... 30:
       digitalWrite(RELAY_PUMP, HIGH);
       lcd.clear();
@@ -87,9 +99,15 @@ void loop(){
       digitalWrite(RELAY_PUMP, LOW);
   }
 
-  switch(DHT.temperature){
+  switch(DHT.temperature) {
     case 30 ... 40:
-      digitalWrite(RELAY_FAN, HIGH);
+      digitalWrite(RELAY_FAN, HIGH);              //DHT temperature
+      break;
+  }
+
+  switch(DHT.humidity) {
+      case 10 ... 50:
+      digitalWrite(RELAY_PUMP, HIGH);
       break;
   }
 
