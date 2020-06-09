@@ -76,6 +76,10 @@ void loop() {
   Serial.print("Soil Data: ");
   Serial.println(soil_sensorValue);
   analogWrite(send_soil_moist, soil_sensorValue);    //Send soil moisture data
+  lcd.setCursor(0,0);
+  lcd.print("Moisture content in soil:");
+  lcd.print(soil_sensorValue);
+  lcd.print("%");
   delay(1000);
 
   //Light Intensity
