@@ -39,11 +39,6 @@ void setup(){
 
   lcd.begin(16,2);
   ld.setBacklit(3, POSITIVE);
-  lcd.setCursor(0, 0);
-  lcd.print("Project:");
-  lcd.setCursor(0, 1);    //Column | Row
-  lcd.print("IoT Green house Manager");
-  lcd.clear();
 }
 
 void lcd_display() {
@@ -58,6 +53,7 @@ void loop() {
 
   lcd.clear();
   lcd.setCursor(0, 0);
+  lcd_display();
 
   //DHT sensor
   DHT.read11(dht_pin);
@@ -81,6 +77,7 @@ void loop() {
   lcd.print(soil_sensorValue);
   lcd.print("%");
   delay(1000);
+  lcd.clearDisplay();
 
   //Light Intensity
   light_SensorValue = anaogRead(light_SensorPin);
@@ -88,7 +85,11 @@ void loop() {
   Serial.print("Light Info: ");
   Serial.println(light_SensorValue);
   analogWrite(send_light, light_SensorValue);       //Send light data
+  lcd.setCursor(1,0);
+  lcd.print("Light: ");
+  lcd.print(light_SensorValue);
   delay(1000);
+  lcd.clearDisplay();
 
 
   //Automatic control(change values accordingly)
@@ -109,7 +110,7 @@ void loop() {
       break;
   }
 
-  switch(DHT.humidity) {
+  switch(DHT.humidity) {                         //DHT humidity
       case 10 ... 50:
       digitalWrite(RELAY_PUMP, HIGH);
       break;
