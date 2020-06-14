@@ -5,10 +5,11 @@ const char* ssid = "INCLUDE";
 const char* password = "ther3isn0paswd";
 WiFiServer server(80);
 
-const int recv_temp = D2;
-const int recv_humid = D3;
-const int recv_moisture = D4;
-const int recv_light = D5;
+//Reciving data from arduino
+const int recv_temp = D5;
+const int recv_humid = D6;
+const int recv_moisture = D7;
+const int recv_light = D8;
 
 void setup(){
   

@@ -3,39 +3,41 @@
 #include "LCD.H"
 #include "dht.h"
 
-#define dht_pin = A0;
+#define dht_pin = 4;
 dht DHT;
 
 LiquidCrystal_I2C lcd(0x3F,2,1,0,4,5,6,7);
-int soil_sensorPin = A1;
+int soil_sensorPin = 3;
 int soil_sensorValue;
-int light_SensorPin = A2;
+int light_SensorPin = 5;
 int light_SensorValue;
-int RELAY_FAN = A3;
-int RELAY_PUMP = A4;
+// int RELAY_FAN = ;
+// int RELAY_PUMP = ;
 
-const int send_temperature;
-const int send_humidity;
-const int send_soil_moist;
-const int send_light;
+//send data to server
+const int send_temperature = A0;
+const int send_humidity = A1;
+const int send_soil_moist = A2;
+const int send_light = A3;
 
 
 void setup(){
 
-  //Controller communication pins
+  //Pins to send data to server
   pinMode(send_temperature, OUTPUT);
-  pinMode(send_humidity, OUTdUT);
-  pinMode(send_soil_moist);
+  pinMode(send_humidity, OUTPUT);
+  pinMode(send_soil_moist, OUTPUT);
   pinMode(send_light, OUTPUT);
 
 
   Serial.begin(9600);
   delay(10);
-  pinMode(soil_sensorPin, OUTPUT);
-  pinMode(light_SensorPin, OUTPUT);
-  pinMode(RELAY_PUMP, OUTPUT);
-  pinMode(RELAY_FAN, OUTPUT);
-  pinMode(send_light, OUTPUT);
+
+  //Sensor pins mode
+  pinMode(soil_sensorPin, INPUT);
+  pinMode(light_SensorPin, INPUT);
+  // pinMode(RELAY_PUMP, OUTPUT);
+  // pinMode(RELAY_FAN, OUTPUT);
 
   lcd.begin(16,2);
   ld.setBacklit(3, POSITIVE);
