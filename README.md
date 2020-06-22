@@ -1,4 +1,4 @@
-#PROJECT CLIENT
+## PROJECT CLIENT
 
 _____   _______ _____                     _    _                      
 |_   _| |__   __/ ____|                   | |  | |                     
@@ -10,5 +10,5 @@ _____   _______ _____                     _    _
 Arduino/NodeMCU IoT based smart green house manager
 
 
-NOTE:- Source code of Arduino and NodeMCU must be in a folder named same as souce code's file name.
+> NOTE:- Source code of Arduino and NodeMCU must be in a folder named same as souce code's file name.
 BTW arduino ide will do that for you.
