@@ -1,18 +1,18 @@
 #include "LiquidCrystal_I2C.h"
 #include "Wire.h"
 //#include "LCD.H"
-#include <dht.h>
+#include "dht.h"
 
 dht DHT;
 #define dht_pin 4
 
-LiquidCrystal_I2C lcd(0x3F,2,1,0,4,5,6,7);
+LiquidCrystal_I2C lcd(0x3F, 2, 1, 0, 4, 5, 6, 7);
 int soil_sensorPin = 3;
 int soil_sensorValue;
 int light_SensorPin = 5;
 int light_SensorValue;
-// int RELAY_FAN = ;
-// int RELAY_PUMP = ;
+int RELAY_FAN = 11;
+int RELAY_PUMP = 10;
 
 //send data to server
 const int send_temperature = A0;
@@ -40,11 +40,13 @@ void setup(){
   // pinMode(RELAY_FAN, OUTPUT);
 
   lcd.begin(16,2);
-  ld.setBacklit(3, POSITIVE);
+  lcd.setBacklightPin(3, POSITIVE);
+  lcd.setBacklight(HIGH);
+  lcd.print("Hello world");
 }
 
 void lcd_display() {
-  lcd.setBacklit(HIGH);
+  lcd.setBacklight(HIGH);
   lcd.setCursor(0, 0);
   lcd.print("Green House Manager");
   lcd.scrollDisplayLeft();
@@ -69,7 +71,7 @@ void loop() {
   delay(1000);
 
   //Soil Sensor
-  soil_SensorValue = analogRead(soil_sensorPin);
+  int soil_SensorValue = analogRead(soil_sensorPin);
   soil_sensorValue = map(soil_sensorValue, 0, 1024, 0, 100);
   Serial.print("Soil Data: ");
   Serial.println(soil_sensorValue);
@@ -79,10 +81,10 @@ void loop() {
   lcd.print(soil_sensorValue);
   lcd.print("%");
   delay(1000);
-  lcd.clearDisplay();
+  lcd.noDisplay();
 
   //Light Intensity
-  light_SensorValue = anaogRead(light_SensorPin);
+  int light_SensorValue = analogRead(light_SensorPin);
   light_SensorValue = map(light_SensorValue, 0, 1024, 0, 100);
   Serial.print("Light Info: ");
   Serial.println(light_SensorValue);
@@ -91,7 +93,7 @@ void loop() {
   lcd.print("Light: ");
   lcd.print(light_SensorValue);
   delay(1000);
-  lcd.clearDisplay();
+  lcd.noDisplay();
 
 
   //Automatic control(change values accordingly)
@@ -106,13 +108,13 @@ void loop() {
       digitalWrite(RELAY_PUMP, LOW);
   }
 
-  switch(DHT.temperature) {
+  switch(int(DHT.temperature)) {
     case 30 ... 40:
       digitalWrite(RELAY_FAN, HIGH);              //DHT temperature
       break;
   }
 
-  switch(DHT.humidity) {                         //DHT humidity
+  switch(int(DHT.humidity)) {                         //DHT humidity
       case 10 ... 50:
       digitalWrite(RELAY_PUMP, HIGH);
       break;
