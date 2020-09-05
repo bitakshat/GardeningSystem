@@ -1,10 +1,10 @@
 #include "LiquidCrstal_I2C.h"
 #include "Wire.h"
 #include "LCD.H"
-#include "dht.h"
+#include <dht.h>
 
-#define dht_pin = 4;
 dht DHT;
+#define dht_pin 4
 
 LiquidCrystal_I2C lcd(0x3F,2,1,0,4,5,6,7);
 int soil_sensorPin = 3;
@@ -45,7 +45,7 @@ void setup(){
 
 void lcd_display() {
   lcd.setBacklit(HIGH);
-  lcd.setCursor(0,0);
+  lcd.setCursor(0, 0);
   lcd.print("Green House Manager");
   lcd.scrollDisplayLeft();
   delay(100);

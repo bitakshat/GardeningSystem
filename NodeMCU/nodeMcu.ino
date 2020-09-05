@@ -1,8 +1,8 @@
 #include<ESP8266WiFi.h>
 
 //NodeMcu
-const char* ssid = "INCLUDE";
-const char* password = "ther3isn0paswd";
+const char* ssid = "YOUR WIFI SSID";
+const char* password = "YOUR WIFI PASSWORD";
 WiFiServer server(80);
 
 //Reciving data from arduino
