@@ -1,6 +1,6 @@
-#include "LiquidCrstal_I2C.h"
+#include "LiquidCrystal_I2C.h"
 #include "Wire.h"
-#include "LCD.H"
+//#include "LCD.H"
 #include <dht.h>
 
 dht DHT;
@@ -119,4 +119,3 @@ void loop() {
   }
 
 }
-

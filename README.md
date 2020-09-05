@@ -15,6 +15,6 @@ BTW arduino ide will do that for you.
 
 ## Download Links
 [I2C Library](https://cdn.instructables.com/ORIG/FUL/EZKW/J2UPIAO3/FULEZKWJ2UPIAO3.rar)
-[NodeMcu Board](https://dl.espressif.com/dl/package_esp32_index.json, http://arduino.esp8266.com/stable/package_esp8266com_index.json
+[NodeMcu Board](https://dl.espressif.com/dl/package_esp32_index.json, http://arduino.esp8266.com/stable/package_esp8266com_index.json)
 [DHT11 Library](https://www.circuitbasics.com/wp-content/uploads/2015/10/DHTLib.zip)
 
