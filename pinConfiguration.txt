@@ -6,11 +6,11 @@ Arduino - A0, A1, A2, A3 > NodeMCU - D5, D6, D7, D8
 LCD - SCL > Arduino A5
     - SDA > Arduino A4
 --------------------------------------------------------
-DHT11 - DATA > Arduino D4
+DHT11 - DATA > Arduino D10
 --------------------------------------------------------
-Soil Moisture - AnalogSignal > Arduino ~D3
+Soil Moisture - AnalogSignal > Arduino ~D9
 --------------------------------------------------------
-Light Intensity - (voltage divider) > Arduino ~D5
+Light Intensity - (voltage divider) > Arduino ~D3
 --------------------------------------------------------
 Relay Module - EN1 > Arduino > D7
 	     - EN2 > Arduino > D8
