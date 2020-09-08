@@ -1,15 +1,15 @@
 #include "LiquidCrystal_I2C.h"
 #include "Wire.h"
-//#include "LCD.H"
+#include "LCD.h"
 #include "dht.h"
 
 dht DHT;
-#define dht_pin 4
+#define dht_pin 10
 
 LiquidCrystal_I2C lcd(0x3F, 2, 1, 0, 4, 5, 6, 7);
-int soil_sensorPin = 3;
+int soil_sensorPin = 9;
 int soil_sensorValue;
-int light_SensorPin = 5;
+int light_SensorPin = 3;
 int light_SensorValue;
 int RELAY_FAN = 11;
 int RELAY_PUMP = 10;
